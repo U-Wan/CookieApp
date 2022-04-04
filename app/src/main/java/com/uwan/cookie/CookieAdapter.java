@@ -71,7 +71,7 @@ public class CookieAdapter extends RecyclerView.Adapter<CookieAdapter.CustomView
         holder.flavour.setText(cookies.get(holder.getAdapterPosition()).getFavour());
         int Cookie_id = cookies.get(holder.getAdapterPosition()).getId();
         if (favorites.containsKey(String.valueOf(Cookie_id))) {
-            holder.Img_view.setImageResource(R.drawable.outline_favorite_black_20);
+            holder.Img_view.setImageResource(R.drawable.outline_favourite_black_20);
             cookies.get(holder.getAdapterPosition()).setFav(true);
         } else {
             cookies.get(holder.getAdapterPosition()).setFav(false);
@@ -129,7 +129,7 @@ public class CookieAdapter extends RecyclerView.Adapter<CookieAdapter.CustomView
                         myEdit.remove(String.valueOf(cookies.get(getAdapterPosition()).getId()));
                         myEdit.commit();
                     } else {
-                        Img_view.setImageResource(R.drawable.outline_favorite_black_20);
+                        Img_view.setImageResource(R.drawable.outline_favourite_black_20);
                         cookies.get(getAdapterPosition()).setFav(true);
                         myEdit.putString(String.valueOf(cookies.get(getAdapterPosition()).getId()), "fav");
                         myEdit.commit();

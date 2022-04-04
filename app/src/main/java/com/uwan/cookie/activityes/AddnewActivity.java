@@ -33,7 +33,7 @@ public class AddnewActivity extends AppCompatActivity {
         txtbrand = findViewById(R.id.txt_brand_txt_edit);
         txtname = findViewById(R.id.txt_cookie_name_edit);
         txtweight =findViewById(R.id.edit_txt_weght);
-        img_link=findViewById(R.id.edtimglink);
+        //img_link=findViewById(R.id.edtimglink);
         addbutton =findViewById(R.id.btn_add);
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my_db").build();
@@ -48,7 +48,7 @@ public class AddnewActivity extends AppCompatActivity {
                 brand= txtbrand.getText().toString();
                 name= txtname.getText().toString();
                 weight= txtweight.getText().toString();
-                imglink=img_link.getText().toString();
+            //    imglink=img_link.getText().toString();
                 Cookie cookie1 = new Cookie(name,flavour,expiration,brand,weight);
                 boolean x;
                 ExecutorService es = Executors.newSingleThreadExecutor();

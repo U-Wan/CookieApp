@@ -66,7 +66,7 @@ public class notification_worker extends Worker {
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "999")
-                    .setSmallIcon(R.drawable.outline_favorite_black_20)
+                    .setSmallIcon(R.drawable.outline_favourite_black_20)
                     .setContentTitle("Cookie...")
                     .setContentText("Click for random Cookie")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -80,7 +80,7 @@ public class notification_worker extends Worker {
             notificationManager.notify(999, builder.build());
         } else {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "999")
-                    .setSmallIcon(R.drawable.outline_favorite_black_20)
+                    .setSmallIcon(R.drawable.outline_favourite_black_20)
                     .setContentTitle("Cookie...")
                     .setContentText("Click for random Cookie")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)

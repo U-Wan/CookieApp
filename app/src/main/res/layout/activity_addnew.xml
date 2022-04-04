@@ -4,106 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/imgback"
     android:orientation="vertical"
     tools:context="com.uwan.cookie.activityes.AddnewActivity">
+
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      android:layout_marginBottom="50dp"
-        android:text="Add new Cookie"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
         android:layout_gravity="center"
-        android:textStyle="bold"
-     />
-
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:background="#ffff"
+        android:backgroundTint="#FF5722"
+        android:text="Add new Cookie"
+        android:textColor="#F6FBF7"
+        android:textSize="44sp"
+        android:textStyle="bold" />
 
     <EditText
             android:id="@+id/txt_cookie_name_edit"
-            android:layout_width="200dp"
+        android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
+        android:background="#E8EBCB"
 
             android:layout_height="wrap_content"
-            android:hint="Enter name"
-            android:textSize="14sp"/>
+            android:hint="Cookie name"
+        android:textSize="30sp"/>
 
         <EditText
             android:id="@+id/txt_flavour_txt_edit"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
+            android:background="#E8EBCB"
             android:layout_height="wrap_content"
-            android:hint="Enter flavour"
-            android:textSize="14sp"
-            />
+            android:hint="Flavour"
+            android:textSize="30sp"            />
 
 
 
 
         <EditText
             android:id="@+id/txt_brand_txt_edit"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
+            android:background="#E8EBCB"
             android:layout_height="wrap_content"
-            android:hint="Enter Brand"
-            android:textSize="14sp"
+            android:hint="Brand"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
 
-
-
-        <EditText
-            android:id="@+id/txt_exp_txt_edit"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Expiration"
-            android:textSize="14sp"
-           />
-
-
-        <EditText
-            android:id="@+id/edit_txt_weght"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:layout_margin="5dp"
-            android:hint="Enter Weight"
-            android:inputType="textPersonName"
-           />
     <EditText
-        android:id="@+id/edtimglink"
-        android:layout_width="200dp"
+        android:id="@+id/txt_exp_txt_edit"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:ems="10"
         android:layout_margin="5dp"
-        android:hint="paste image link here"
+        android:background="#E8EBCB"
+        android:hint="Expiration Date"
+        android:textSize="30sp" />
+
+
+    <EditText
+        android:id="@+id/edit_txt_weght"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="#E8EBCB"
+        android:ems="10"
+        android:hint="Weight in grams"
         android:inputType="textPersonName"
-        />
+        android:textSize="30sp" />
+
 
 
 
             <Button
                 android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="25sp"
                 android:text="save"
-                android:layout_margin="15dp"
+                android:backgroundTint="#009688"
+                android:layout_margin="35dp"
                 />
 
-
-
-
-=
 
 </LinearLayout>

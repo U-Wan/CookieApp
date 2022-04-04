@@ -44,8 +44,8 @@ public class DetailsActivity extends AppCompatActivity {
         imglogo=findViewById(R.id.imageViewlogo);
 
         txtWeight =findViewById(R.id.txt_weght_details);
-        imglink1=findViewById(R.id.txtimglink);
-        button=findViewById(R.id.btn_ok);
+        //imglink1=findViewById(R.id.txtimglink);
+        //button=findViewById(R.id.btn_ok);
         detail_img_fav=findViewById(R.id.detail_img_fav);
 
         Bundle bundle = getIntent().getExtras();
@@ -67,7 +67,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         is_fav=  bundle.getBoolean(CookieAdapter.key_fav,false);
         if (is_fav){
-            detail_img_fav.setImageResource(R.drawable.outline_favorite_black_20);
+            detail_img_fav.setImageResource(R.drawable.outline_favourite_black_20);
         }else{
             detail_img_fav.setImageResource(R.drawable.outline_favorite_border_black_20);
         }
@@ -81,7 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
                     myEdit.remove(String.valueOf(id));
                     myEdit.commit();
                 }else{
-                    detail_img_fav.setImageResource(R.drawable.outline_favorite_black_20);
+                    detail_img_fav.setImageResource(R.drawable.outline_favourite_black_20);
                     is_fav=true;
                     myEdit = sharedPreferences.edit();
                     myEdit.putString(String.valueOf(id), "fav");

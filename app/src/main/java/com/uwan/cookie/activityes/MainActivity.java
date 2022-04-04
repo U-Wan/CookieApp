@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtflavour = findViewById(R.id.txt_flavour_txt);
-        txtexpirationdate = findViewById(R.id.txt_exp_txt);
         txtbrand = findViewById(R.id.txt_brand_txt);
         txtname = findViewById(R.id.txt_cookie_name);
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         //UI Thread work here
                         Cookie cookie = cookies.get(cookies.size() - 1);
                         txtflavour.setText(cookie.getFavour());
-                                txtexpirationdate.setText(cookie.getExpdate());
+                               // txtexpirationdate.setText(cookie.getExpdate());
                                 txtbrand.setText(cookie.getBrand());
                                 txtname.setText(cookie.getName());
                         PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(notification_worker.class,15, TimeUnit.NANOSECONDS)
