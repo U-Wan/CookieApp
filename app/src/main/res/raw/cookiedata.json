@@ -1,0 +1,46 @@
+{
+  "cookies": [
+    {
+      "name": "name 1",
+      "Favour": "sweet",
+      "expdate": "02.02.2021",
+      "brand": "Nestle",
+      "weight":56
+      
+    },
+    {
+     "name": "name 2",
+      "Favour": "sweet+",
+      "expdate": "03.02.2021",
+      "brand": "Adidas",
+      "weight":57
+    },
+    {
+   "name": "name 3",
+      "Favour": "sweet+++",
+      "expdate": "04.02.2021",
+      "brand": "nike",
+      "weight":58
+    },
+    {
+     "name": "name 4",
+      "Favour": "sweet",
+      "expdate": "05.02.2021",
+      "brand": "top kek",
+      "weight":59
+    },
+    {
+       "name": "name 5",
+      "Favour": "sweet+",
+      "expdate": "06.02.2021",
+      "brand": "NoIdea",
+      "weight":60
+    },
+    { "name": "name 6",
+      "Favour": "sweet",
+      "expdate": "07.02.2021",
+      "brand": "sample_brand1",
+      "weight":60
+    }
+  ]
+}
