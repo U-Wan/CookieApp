@@ -28,12 +28,14 @@ public class CookieAdapter extends RecyclerView.Adapter<CookieAdapter.CustomView
     Map<String, ?> favorites;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor myEdit;
-   public static String key_txt_flavour_txt="key_txt_flavour_txt";
-    public static  String  key_txt_exp_txt="key_txt_exp_txt";
-    public static  String  key_txt_brand_txt="key_txt_brand_txt";
-    public static  String  key_txt_cookie_name="key_txt_cookie_name";
-    public static  String key_txt_weight="key_txt_weight";
+   public static String ktxtFlavour ="key_txt_flavour_txt";
+    public static  String kTxtexpirationdate ="key_txt_exp_txt";
+    public static  String kTxtBrand ="key_txt_brand_txt";
+    public static  String kTxtName ="key_txt_cookie_name";
+    public static  String kTxtWeight ="key_txt_weight";
+    public static  String kimglink="keytxtimaglink";
     public static  String key_fav="key_fav";
+
     public static String key_id="key_id";
 
 
@@ -98,18 +100,20 @@ public class CookieAdapter extends RecyclerView.Adapter<CookieAdapter.CustomView
                 public void onClick(View view) {
 
                     Cookie cookie = cookies.get(getAdapterPosition());
-                    String txt_flavour_txt, txt_exp_txt, txt_brand_txt, txt_cookie_name, txt_weight;
+                    String txt_flavour_txt, txt_exp_txt, txt_brand_txt, txt_cookie_name, txt_weight,txtimlink;
                     txt_flavour_txt = cookie.getFavour();
                     txt_exp_txt = cookie.getExpdate();
+                    txtimlink = cookie.getExpdate();
                     txt_brand_txt = cookie.getBrand();
                     txt_cookie_name = cookie.getName();
                     txt_weight = cookie.getWeight();
                     Intent intent = new Intent(context, AddnewActivity.class);
-                    intent.putExtra(key_txt_cookie_name,txt_cookie_name);
-                    intent.putExtra(key_txt_weight,txt_weight);
-                    intent.putExtra(key_txt_brand_txt,txt_brand_txt);
-                    intent.putExtra(key_txt_flavour_txt,txt_flavour_txt);
-                    intent.putExtra(key_txt_exp_txt,txt_exp_txt);
+                    intent.putExtra(kTxtName,txt_cookie_name);
+                    intent.putExtra(kTxtWeight,txt_weight);
+                    intent.putExtra(kTxtBrand,txt_brand_txt);
+                    intent.putExtra(ktxtFlavour,txt_flavour_txt);
+                    intent.putExtra(kTxtexpirationdate,txt_exp_txt);
+                    intent.putExtra(kimglink,txtimlink);
                     intent.putExtra(key_fav,cookie.isFav());
                     intent.putExtra(key_id,cookie.getId());
                     intent.setFlags(FLAG_ACTIVITY_NEW_TASK);

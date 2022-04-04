@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class AddnewActivity extends AppCompatActivity {
-    EditText txtflavour, txtexpirationdate, txtbrand, txtname, txtweight;
+    EditText txtflavour, txtexpirationdate, txtbrand, txtname, txtweight,img_link;
     Button addbutton;
     AppDatabase db;
 
@@ -33,6 +33,7 @@ public class AddnewActivity extends AppCompatActivity {
         txtbrand = findViewById(R.id.txt_brand_txt_edit);
         txtname = findViewById(R.id.txt_cookie_name_edit);
         txtweight =findViewById(R.id.edit_txt_weght);
+        img_link=findViewById(R.id.edtimglink);
         addbutton =findViewById(R.id.btn_add);
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my_db").build();
@@ -40,13 +41,14 @@ public class AddnewActivity extends AppCompatActivity {
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String flavour,expiration,brand,name,weight;
+                String flavour,expiration,brand,name,weight,imglink;
 
                 flavour= txtflavour.getText().toString();
                 expiration= txtexpirationdate.getText().toString();
                 brand= txtbrand.getText().toString();
                 name= txtname.getText().toString();
                 weight= txtweight.getText().toString();
+                imglink=img_link.getText().toString();
                 Cookie cookie1 = new Cookie(name,flavour,expiration,brand,weight);
                 boolean x;
                 ExecutorService es = Executors.newSingleThreadExecutor();
@@ -63,7 +65,6 @@ public class AddnewActivity extends AppCompatActivity {
                     setResult(99);
                     }
                 } catch (Exception e) {
-                    // failed
                 }
                 es.shutdown();
             }

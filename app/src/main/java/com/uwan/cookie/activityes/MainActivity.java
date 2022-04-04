@@ -143,19 +143,23 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray cookie_array = jsonObject.getJSONArray("cookies");
-            String name, Favour, expdate, brand;
+            String name, Favour, expdate, brand, imglink;
             int weight;
             for (int i = 0; i < cookie_array.length(); i++) {
                 name = cookie_array.getJSONObject(i).getString("name");
-                Favour = cookie_array.getJSONObject(i).getString("Favour");
-                expdate = cookie_array.getJSONObject(i).getString("expdate");
+                Favour = cookie_array.getJSONObject(i).getString("flavour");
+                expdate = cookie_array.getJSONObject(i).getString("expirationdate");
                 brand = cookie_array.getJSONObject(i).getString("brand");
                 weight = cookie_array.getJSONObject(i).getInt("weight");
+               // imglink = cookie_array.getJSONObject(i).getString("imglink");
                 String finalName = name;
                 String finalFavour = Favour;
                 String finalExpdate = expdate;
                 String finalBrand = brand;
+                //String finalimgLink=imglink;
                 int finalWeight = weight;
+
+
                 boolean x;
                 ExecutorService es = Executors.newSingleThreadExecutor();
                 Future<Boolean> result = es.submit(new Callable<Boolean>() {

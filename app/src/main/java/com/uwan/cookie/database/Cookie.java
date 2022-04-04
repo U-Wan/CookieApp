@@ -14,6 +14,7 @@ public class Cookie {
     private String   brand;
     private String   weight;
 
+
     public boolean isFav() {
         return isFav;
     }
@@ -32,6 +33,7 @@ public class Cookie {
         this.expdate = expdate;
         this.brand = brand;
         this.weight = weight;
+
     }
 
     public int getId() {
@@ -81,4 +83,7 @@ public class Cookie {
     public void setWeight(String weight) {
         this.weight = weight;
     }
+
+
+
 }

@@ -1,6 +1,5 @@
 package com.uwan.cookie;
 
-import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,7 +11,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.room.Room;
-import androidx.work.ListenableWorker;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -47,13 +45,14 @@ public class notification_worker extends Worker {
         int randomNum = rand.nextInt((cookies.size()));
         Cookie cookie =cookies.get(randomNum);
     Intent intent = new Intent(context.getApplicationContext(), AddnewActivity.class);
-        intent.putExtra(CookieAdapter.key_txt_cookie_name,cookie.getName());
+        intent.putExtra(CookieAdapter.kTxtName,cookie.getName());
         intent.putExtra(CookieAdapter.key_fav,cookie.isFav());
         intent.putExtra(CookieAdapter.key_id,cookie.getId());
-        intent.putExtra(CookieAdapter.key_txt_brand_txt,cookie.getBrand());
-        intent.putExtra(CookieAdapter.key_txt_exp_txt,cookie.getExpdate());
-        intent.putExtra(CookieAdapter.key_txt_flavour_txt,cookie.getFavour());
-        intent.putExtra(CookieAdapter.key_txt_weight,cookie.getWeight());
+        intent.putExtra(CookieAdapter.kTxtBrand,cookie.getBrand());
+        intent.putExtra(CookieAdapter.kTxtexpirationdate,cookie.getExpdate());
+     //   intent.putExtra(CookieAdapter.kimglink,cookie.getImglink());
+        intent.putExtra(CookieAdapter.ktxtFlavour,cookie.getFavour());
+        intent.putExtra(CookieAdapter.kTxtWeight,cookie.getWeight());
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

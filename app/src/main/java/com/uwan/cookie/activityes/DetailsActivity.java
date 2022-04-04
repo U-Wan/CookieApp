@@ -2,6 +2,7 @@ package com.uwan.cookie.activityes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.uwan.cookie.CookieAdapter;
 
 
@@ -17,7 +19,11 @@ import com.thatapp.cookie_room_example.R;
 
 
 public class DetailsActivity extends AppCompatActivity {
-    TextView txt_flavour_txt, txt_exp_txt, txt_brand_txt, txt_cookie_name, txt_weight;
+    TextView txtFlavour, txtExpirationDate, txtBrand, txtName, txtWeight,imglink1;
+    ImageView imglogo;
+    //String imglink;
+    //Context context = imglogo.getContext();
+
     Button button;
     boolean is_fav=false;
     ImageView detail_img_fav;
@@ -30,19 +36,32 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        txt_flavour_txt =findViewById(R.id.txt_flavour_txt_details);
-        txt_exp_txt =findViewById(R.id.txt_exp_txt_details);
-        txt_brand_txt =findViewById(R.id.txt_brand_txt_details);
-        txt_cookie_name =findViewById(R.id.txt_cookie_name_details);
-        txt_weight=findViewById(R.id.txt_weght_details);
+        txtFlavour =findViewById(R.id.txt_flavour_txt_details);
+        txtExpirationDate =findViewById(R.id.txt_exp_txt_details);
+        txtBrand =findViewById(R.id.txt_brand_txt_details);
+        txtName =findViewById(R.id.txt_cookie_name_details);
+
+        imglogo=findViewById(R.id.imageViewlogo);
+
+        txtWeight =findViewById(R.id.txt_weght_details);
+        imglink1=findViewById(R.id.txtimglink);
         button=findViewById(R.id.btn_ok);
         detail_img_fav=findViewById(R.id.detail_img_fav);
+
         Bundle bundle = getIntent().getExtras();
-        txt_flavour_txt.setText(bundle.getString(CookieAdapter.key_txt_flavour_txt));
-        txt_exp_txt.setText(bundle.getString(CookieAdapter.key_txt_exp_txt));
-        txt_brand_txt.setText(bundle.getString(CookieAdapter.key_txt_brand_txt));
-        txt_cookie_name.setText(bundle.getString(CookieAdapter.key_txt_cookie_name));
-        txt_weight.setText(bundle.getString(CookieAdapter.key_txt_weight));
+        txtFlavour.setText(bundle.getString(CookieAdapter.ktxtFlavour));
+        txtExpirationDate.setText(bundle.getString(CookieAdapter.kTxtexpirationdate));
+        txtBrand.setText(bundle.getString(CookieAdapter.kTxtBrand));
+        txtName.setText(bundle.getString(CookieAdapter.kTxtName));
+        txtWeight.setText(bundle.getString(CookieAdapter.kTxtWeight));
+        imglink1.setText(bundle.getString(CookieAdapter.kimglink));
+        //imglink=bundle.getString(CookieAdapter.kimglink);
+
+
+      /*  Glide.with(context)
+                .load("http://via.placeholder.com/300.png")
+                .into(imglogo);*/
+
         id=bundle.getInt(CookieAdapter.key_id);
         sharedPreferences = getSharedPreferences("fav", MODE_PRIVATE);
 
