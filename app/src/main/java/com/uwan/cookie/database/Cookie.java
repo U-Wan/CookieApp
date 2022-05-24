@@ -56,17 +56,10 @@ public class Cookie {
         return Favour;
     }
 
-    public void setFavour(String favour) {
-        Favour = favour;
-    }
-
     public String getExpdate() {
         return expdate;
     }
 
-    public void setExpdate(String expdate) {
-        this.expdate = expdate;
-    }
 
     public String getBrand() {
         return brand;

@@ -23,6 +23,7 @@ import com.uwan.cookie.database.Cookie;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -56,24 +57,18 @@ public class SecondActivity extends AppCompatActivity {
     private void getData(AppDatabase appDatabase) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                //Background work here
-                List<Cookie> cookies = appDatabase.CookieDao().getAllCookies();
-                SharedPreferences sharedPreferences = getSharedPreferences("fav",MODE_PRIVATE);
-                Map<String, ?> favorites= sharedPreferences.getAll();
-                cookieAdapter = new CookieAdapter(cookies,getApplicationContext(),favorites);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //UI Thread work here
-                        recyclerView.setAdapter(cookieAdapter);
-                        recyclerView.getAdapter().notifyDataSetChanged();
+        executor.execute(() -> {
+            //Background work here
+            List<Cookie> cookies = appDatabase.CookieDao().getAllCookies();
+            SharedPreferences sharedPreferences = getSharedPreferences("fav",MODE_PRIVATE);
+            Map<String, ?> favorites= sharedPreferences.getAll();
+            cookieAdapter = new CookieAdapter(cookies,getApplicationContext(),favorites);
+            handler.post(() -> {
+                //UI Thread work here
+                recyclerView.setAdapter(cookieAdapter);
+                Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 
-                    }
-                });
-            }
+            });
         });
     }
     @Override

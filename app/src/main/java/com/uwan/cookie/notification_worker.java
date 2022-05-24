@@ -24,7 +24,6 @@ import java.util.Random;
 
 public class notification_worker extends Worker {
     Context context;
-
     public notification_worker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
         this.context = context;
@@ -33,11 +32,6 @@ public class notification_worker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-/*      //   Intent okay = new Intent(getApplicationContext(), BroadCastRec.class);
-         okay.putExtra("k", 0);
-          PendingIntent snoozePendingIntent =
-               PendingIntent.getBroadcast(getApplicationContext(),
-                      //0, okay, PendingIntent.FLAG_IMMUTABLE);*/
       AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my_db").build();
       List<Cookie>cookies= db.CookieDao().getAllCookies();
@@ -50,7 +44,6 @@ public class notification_worker extends Worker {
         intent.putExtra(CookieAdapter.key_id,cookie.getId());
         intent.putExtra(CookieAdapter.kTxtBrand,cookie.getBrand());
         intent.putExtra(CookieAdapter.kTxtexpirationdate,cookie.getExpdate());
-     //   intent.putExtra(CookieAdapter.kimglink,cookie.getImglink());
         intent.putExtra(CookieAdapter.ktxtFlavour,cookie.getFavour());
         intent.putExtra(CookieAdapter.kTxtWeight,cookie.getWeight());
 
@@ -61,8 +54,6 @@ public class notification_worker extends Worker {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("999", name, importance);
             channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "999")
@@ -89,12 +80,10 @@ public class notification_worker extends Worker {
                                     context,
                                     0,
                                     intent,
-                                    PendingIntent.FLAG_ONE_SHOT));;
+                                    PendingIntent.FLAG_ONE_SHOT));
             NotificationManager mNotificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             mNotificationManager.notify(0, builder.build());
-
-
         }
         Log.e("Worker","Worker is working");
         return Result.success();

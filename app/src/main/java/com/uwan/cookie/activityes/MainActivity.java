@@ -32,7 +32,6 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -40,7 +39,9 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     AppDatabase db;
-    TextView txtflavour, txtexpirationdate, txtbrand, txtname;
+    TextView txtflavour;
+    TextView txtbrand;
+    TextView txtname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,45 +60,31 @@ public class MainActivity extends AppCompatActivity {
     public void recent() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                //Background work here
-                List<Cookie> cookies = db.CookieDao().getAllCookies();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //UI Thread work here
-                        Cookie cookie = cookies.get(cookies.size() - 1);
-                        txtflavour.setText(cookie.getFavour());
-                               // txtexpirationdate.setText(cookie.getExpdate());
-                                txtbrand.setText(cookie.getBrand());
-                                txtname.setText(cookie.getName());
-                        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(notification_worker.class,15, TimeUnit.NANOSECONDS)
-                                .build();
+        executor.execute(() -> {
+            //Background work here
+            List<Cookie> cookies = db.CookieDao().getAllCookies();
+            handler.post(() -> {
+                //UI Thread work here
+                Cookie cookie = cookies.get(cookies.size() - 1);
+                txtflavour.setText(cookie.getFavour());
+                       // txtexpirationdate.setText(cookie.getExpdate());
+                        txtbrand.setText(cookie.getBrand());
+                        txtname.setText(cookie.getName());
+                PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(notification_worker.class,15, TimeUnit.NANOSECONDS)
+                        .build();
 
-                      WorkManager workManager=  WorkManager.getInstance(getApplicationContext());
-                        workManager.pruneWork();
-                        workManager.enqueue(periodicWorkRequest);
+              WorkManager workManager=  WorkManager.getInstance(getApplicationContext());
+                workManager.pruneWork();
+                workManager.enqueue(periodicWorkRequest);
 
 
-                    }
-                });
-            }
+            });
         });
     }
     public void isDBPopulated() {
         boolean x;
         ExecutorService es = Executors.newSingleThreadExecutor();
-        Future<Boolean> result = es.submit(new Callable<Boolean>() {
-            public Boolean call() throws Exception {
-                if (db.CookieDao().getAllCookies().size() > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+        Future<Boolean> result = es.submit(() -> db.CookieDao().getAllCookies().size() > 0);
         try {
             x = result.get();
             if (!x) {
@@ -125,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             int n;
             while (true) {
                 try {
+                    assert reader != null;
                     if ((n = reader.read(buffer)) == -1) break;
                     writer.write(buffer, 0, n);
                 } catch (IOException e) {
@@ -142,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray cookie_array = jsonObject.getJSONArray("cookies");
-            String name, Favour, expdate, brand, imglink;
+            String name, Favour, expdate, brand;
             int weight;
             for (int i = 0; i < cookie_array.length(); i++) {
                 name = cookie_array.getJSONObject(i).getString("name");
@@ -161,11 +149,9 @@ public class MainActivity extends AppCompatActivity {
 
                 boolean x;
                 ExecutorService es = Executors.newSingleThreadExecutor();
-                Future<Boolean> result = es.submit(new Callable<Boolean>() {
-                    public Boolean call() throws Exception {
-                        db.CookieDao().Insert(new Cookie(finalName, finalFavour, finalExpdate, finalBrand, String.valueOf(finalWeight)));
-                        return true;
-                    }
+                Future<Boolean> result = es.submit(() -> {
+                    db.CookieDao().Insert(new Cookie(finalName, finalFavour, finalExpdate, finalBrand, String.valueOf(finalWeight)));
+                    return true;
                 });
                 try {
                     x = result.get();
